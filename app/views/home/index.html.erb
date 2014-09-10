@@ -1,0 +1,26 @@
+<a href="/admin" class="btn btn-primary btn-lg ">Click Here for Admin panel</a>
+<table class="table table-bordered">
+  <tr>
+    <td>category</td>
+    <td>Title</td>
+    <td>Description</td>
+    <td>Images</td>
+  </tr>
+  <% @category.each do |c| %>
+      <tr>
+        <td rowspan="<%= c.adlists.count %>"><%= c.name %></td>
+
+        <% c.adlists.each do |a| %>
+          <tr>
+            <td rowspan="<%= a.adlist_atachments.count %>"><%= a.title %></td>
+            <td rowspan="<%= a.adlist_atachments.count %>"><%= a.description %></td>
+          </tr>
+          <% a.adlist_atachments.each do |at| %>
+              <tr>
+                <td><%= image_tag(at.avatar.url(:thumb)) %></td>
+              </tr>
+          <% end %>
+      <% end %>
+      </tr>
+  <% end %>
+</table>
