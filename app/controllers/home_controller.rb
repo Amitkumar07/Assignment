@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @category=Category.all
+    @adlist=Adlist.all
 
   end
 end
