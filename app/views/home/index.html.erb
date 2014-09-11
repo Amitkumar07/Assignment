@@ -1,57 +1,60 @@
 <style>
-    body { padding-top: 70px; }
+    body {
+        padding-top: 70px;
+    }
 </style>
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: darkgray; height: 10%" role="navigation">
   <div class="container" style="padding: 1%">
     <a href="/" class=" ">Home</a>&nbsp;&nbsp;
     <a href="/admin" class=" ">Adminpanel</a>
 
-    <%= link_to "Logout", destroy_user_session_path,:style => "float:right", :method => :delete %>
-    <span style ="float:right;">Loged in as <%= current_user.email %></span>&nbsp;&nbsp;&nbsp;
+    <%= link_to "Logout", destroy_user_session_path, :style => "float:right", :method => :delete %>
+    <span style="float:right;">Loged in as <%= current_user.email %></span>&nbsp;&nbsp;&nbsp;
   </div>
 </nav>
 <div class="row">
-  
+
   <div class="container">
-<table class="table table-bordered">
-  <tr>
-    <td>Id</td>
-    <td>category</td>
-    <td>Title</td>
-    <td>Description</td>
-    <td>Images</td>
-  </tr>
-
+    <table class="table table-bordered">
       <tr>
-        <% @adlist.each do |a| %>
-        <td><%= a.id %></td>
-        <td><%= a.title %></td>
-        <td ><%= a.description %></td>
-        <td ><%= a.category.name %></td>
-
-        <td>
-
-          <ul class="bxslider">
-            <% a.adlist_atachments.each do |at| %>
-            <li><%= image_tag(at.avatar.url(:thumb)) %></li>
-            <% end %>
-          </ul>
-
-        </td>
+        <td>Id</td>
+        <td>category</td>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Images</td>
+      </tr>
 
 
+      <% @adlist.each do |a| %>
+          <tr>
+            <td><%= a.id %></td>
+            <td><%= a.title %></td>
+            <td><%= a.description %></td>
+            <td><%= a.category.name %></td>
+
+            <td>
+
+              <ul class="bxslider">
+                <% a.adlist_atachments.each do |at| %>
+                    <li><%= image_tag(at.avatar.url(:thumb)) %></li>
+                <% end %>
+              </ul>
+
+            </td>
+
+          </tr>
 
 
       <% end %>
-      </tr>
 
-</table>
-</div>
+
+    </table>
   </div>
+</div>
 
 </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.bxslider').bxSlider(
                 {
                     auto: true,
